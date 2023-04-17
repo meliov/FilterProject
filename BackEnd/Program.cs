@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using BackEnd.db;
+using BackEnd.Entity;
 
 namespace BackEnd
 {
@@ -261,15 +265,15 @@ namespace BackEnd
 
         public static void Main(string[] args)
         {
-            CarsRepository carsRepository = new CarsRepository();
-            foreach (var car in carsRepository.getCarsBrands())
-            {
-                Console.WriteLine(car);
-            }
-            
-            
+            getAllClassesNames();
         }
-
+        private static void getAllClassesNames()
+        {
+            var q = from t in Assembly.GetExecutingAssembly().GetTypes()
+                where t.IsClass && t.Namespace == "BackEnd.Entity"
+                select t;
+            q.ToList().ForEach(t => Console.WriteLine(t.Name));
+        }
         private static void populateDb()
         {
             Console.Write("in populateDb");

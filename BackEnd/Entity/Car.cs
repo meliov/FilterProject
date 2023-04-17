@@ -1,4 +1,4 @@
-﻿namespace BackEnd
+﻿namespace BackEnd.Entity
 {
     public class Car
     {

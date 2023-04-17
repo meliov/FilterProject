@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using BackEnd.Entity;
 using BackEnd.Properties;
 
 namespace BackEnd.db

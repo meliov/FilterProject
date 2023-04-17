@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BackEnd
+namespace BackEnd.Entity
 {
     public class Phone
     {
