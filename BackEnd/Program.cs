@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using BackEnd.db;
@@ -265,15 +264,11 @@ namespace BackEnd
 
         public static void Main(string[] args)
         {
-            getAllClassesNames();
+            Service service = new Service();
+           // service.getAllClassesNames();
+           //service.getSelectedClassFields("Laptop");
         }
-        private static void getAllClassesNames()
-        {
-            var q = from t in Assembly.GetExecutingAssembly().GetTypes()
-                where t.IsClass && t.Namespace == "BackEnd.Entity"
-                select t;
-            q.ToList().ForEach(t => Console.WriteLine(t.Name));
-        }
+        
         private static void populateDb()
         {
             Console.Write("in populateDb");
