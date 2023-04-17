@@ -1,0 +1,13 @@
+C:\Users\Ahmed\source\repos\FilterProject\BackEnd\bin\Debug\BackEnd.exe.config
+C:\Users\Ahmed\source\repos\FilterProject\BackEnd\bin\Debug\BackEnd.exe
+C:\Users\Ahmed\source\repos\FilterProject\BackEnd\bin\Debug\BackEnd.pdb
+C:\Users\Ahmed\source\repos\FilterProject\BackEnd\bin\Debug\EntityFramework.dll
+C:\Users\Ahmed\source\repos\FilterProject\BackEnd\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Ahmed\source\repos\FilterProject\BackEnd\bin\Debug\EntityFramework.xml
+C:\Users\Ahmed\source\repos\FilterProject\BackEnd\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Ahmed\source\repos\FilterProject\BackEnd\obj\Debug\BackEnd.csproj.AssemblyReference.cache
+C:\Users\Ahmed\source\repos\FilterProject\BackEnd\obj\Debug\BackEnd.csproj.SuggestedBindingRedirects.cache
+C:\Users\Ahmed\source\repos\FilterProject\BackEnd\obj\Debug\BackEnd.csproj.CoreCompileInputs.cache
+C:\Users\Ahmed\source\repos\FilterProject\BackEnd\obj\Debug\BackEnd.csproj.CopyComplete
+C:\Users\Ahmed\source\repos\FilterProject\BackEnd\obj\Debug\BackEnd.exe
+C:\Users\Ahmed\source\repos\FilterProject\BackEnd\obj\Debug\BackEnd.pdb
