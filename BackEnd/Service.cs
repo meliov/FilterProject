@@ -14,15 +14,15 @@ namespace BackEnd
                 select t).ToList();
         }
 
-        public void getAllClassesNames()
+        public List<String> getAllClassesNames()
         {
-            getEntitClasses().Select(it => it.Name);
+           return getEntitClasses().Select(it => it.Name).ToList();
         }
 
-        public void getSelectedClassFields(String className)
+        public List<String> getSelectedClassFields(String className)
         {
-            getEntitClasses().Where(it => it.Name.Equals(className)).First().GetProperties().ToList()
-                .Select(it => it.Name);
+           return getEntitClasses().Where(it => it.Name.Equals(className)).First().GetProperties().ToList()
+                .Select(it => it.Name).ToList();
                 // .ForEach(it => Console.WriteLine(it.Name));
         }
     }
