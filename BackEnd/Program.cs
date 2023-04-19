@@ -267,11 +267,22 @@ namespace BackEnd
 
         public static void Main(string[] args)
         {
-            entityService.FetchEntitiesByClassName("Laptop").ForEach(it => Console.WriteLine(it));
+            Dictionary<string, string> filters = new Dictionary<string, string>
+            {
+                { "Model", "Lenovo" } 
+            };
+            entityService.FetchEntitiesByClassNameAndFilterThem("Laptop", filters ).ForEach(it => Console.WriteLine(it));
+            
         }
 
 
-
+        private static void  mapTest()
+        {
+            foreach (var selectedClassField in entityService.getSelectedClassFields("Laptop"))
+            {
+                Console.WriteLine(selectedClassField.Key + " - " + selectedClassField.Value);
+            }
+        }
         private static void populateDb()
         {
             Console.Write("in populateDb");

@@ -24,11 +24,16 @@ namespace BackEnd
            return getEntitClasses().Select(it => it.Name).ToList();
         }
 
-        public List<String> getSelectedClassFields(String className)
+        public Dictionary<String, Type> getSelectedClassFields(String className)
         {
-            Console.WriteLine("in getSelectedClassFields");
-           return getEntitClasses().Where(it => it.Name.Equals(className)).First().GetProperties().ToList()
-                .Select(it => it.Name).ToList();
+            Console.WriteLine("in GetSelectedClassFields");
+            Type entityType = getEntitClasses().FirstOrDefault(it => it.Name.Equals(className));
+            if (entityType != null)
+            {
+                PropertyInfo[] properties = entityType.GetProperties();
+                return properties.ToDictionary(prop => prop.Name, prop => prop.PropertyType);
+            }
+            return null;
         }
 
         public Type getEntityTypeByName(String entityName)
@@ -37,7 +42,7 @@ namespace BackEnd
             return getEntitClasses().FirstOrDefault(t => t.Name == entityName);
         }
         
-          public List<object> FetchEntitiesByClassName(String className)
+          public List<object> FetchEntitiesByClassNameAndFilterThem(String className,Dictionary<string,string> filters)
         {
             Console.WriteLine("in FetchEntitiesByClassName");
             Type entityTypeByName = getEntityTypeByName(className);
