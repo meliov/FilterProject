@@ -95,7 +95,7 @@ namespace BackEnd
             {
                 Brand = "Lenovo",
                 Model = "ThinkPad X1 Carbon",
-                Processor = "Intel Core i5",
+                Processor = "Intel Core i7",
                 RAM = 16,
                 Storage = 512,
                 Price = 1000.8,
@@ -105,10 +105,10 @@ namespace BackEnd
             {
                 Brand = "Lenovo",
                 Model = "ThinkPad X1 Carbon",
-                Processor = "Intel Core i5",
+                Processor = "Intel Core i7",
                 RAM = 16,
-                Storage = 512,
-                Price = 2000.1,
+                Storage = 2048,
+                Price = 2500.1,
                 ReleaseDate = new DateTime(2021, 3, 1)
             },
             new Laptop
@@ -290,8 +290,10 @@ namespace BackEnd
            // populateDb();
             Dictionary<string, string> filters = new Dictionary<string, string>
             {
-                { "Brand", "Apple" },
-                { "Price", ">800" } 
+                { "Brand", "Lenovo" },
+                { "Price", ">1800" },
+                {"Processor", "Intel Core i7"},
+                {"Storage", ">=512"}
             };
             entityService.FetchEntitiesByClassNameAndFilterThem("Laptop", filters ).ForEach(it => Console.WriteLine(it));
             

@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using BackEnd;
 using BackEnd.db;
 
 namespace FrontEnd
 {
     public class ListContext
     {
-        private List<String> cars;
+        private static EntityService entityService = new EntityService();
+        private List<String> _entityNames;
 
-        public List<string> Cars
+        public List<string> EntityNames
         {
-            get => cars;
-            set => cars = value;
+            get => _entityNames;
+            set => _entityNames = value;
         }
 
         public ListContext()
         {
-            CarsRepository carsRepository = new CarsRepository();
-            Cars = carsRepository.getCarsBrands();
+            EntityNames = entityService.getAllClassesNames();
         }
     }
 }

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEnd"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <ComboBox ItemsSource="{Binding Cars}" HorizontalAlignment="Left" Margin="142,79,0,0" VerticalAlignment="Top" Width="120"/>
+        Title="MainWindow" Height="861" Width="1212">
+    <Grid Margin="0,0,0,13">
+        <ComboBox ItemsSource="{Binding EntityNames}" HorizontalAlignment="Left" Margin="142,79,0,0" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
