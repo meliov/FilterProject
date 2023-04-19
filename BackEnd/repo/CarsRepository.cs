@@ -7,14 +7,15 @@ namespace BackEnd.db
 {
     public class CarsRepository
     {
+        private DatabaseContext<Car> dbContext = new DatabaseContext<Car>();
         public List<Car> getCars()
         {
-            return DatabaseContext.SingletonDbContext.Cars.ToList();
+            return dbContext.Entities.ToList();
         }
 
         public List<String> getCarsBrands()
         {
-            return DatabaseContext.SingletonDbContext.Cars.ToList().Select(car => car.Make + " " + car.Model).ToList();
+            return  getCars().Select(car => car.Make + " " + car.Model).ToList();
         }
     }
 }

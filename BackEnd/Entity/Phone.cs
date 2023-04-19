@@ -2,9 +2,8 @@
 
 namespace BackEnd.Entity
 {
-    public class Phone
+    public class Phone : Entity
     {
-        public int Id { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
         public int Storage { get; set; }
@@ -12,5 +11,11 @@ namespace BackEnd.Entity
         public double Price { get; set; }
         public string OperatingSystem { get; set; }
         public DateTime ReleaseDate { get; set; }
+        
+        public override string ToString()
+        {
+            return Brand + " " + Model + " - " + Price;
+        }
     }
+    
 }

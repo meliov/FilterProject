@@ -2,9 +2,8 @@
 
 namespace BackEnd.Entity
 {
-    public class VideoGame
+    public class VideoGame : Entity
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public string Genre { get; set; }
         public string Platform { get; set; }
@@ -12,5 +11,10 @@ namespace BackEnd.Entity
         public DateTime ReleaseDate { get; set; }
         public int Rating { get; set; }
         public double Price { get; set; }
+        
+        public override string ToString()
+        {
+            return Title + " " + Price;
+        }
     }
 }

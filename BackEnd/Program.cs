@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
 using BackEnd.db;
@@ -9,6 +11,7 @@ namespace BackEnd
 {
     internal class Program
     {
+        private static EntityService entityService = new EntityService();
         private static List<Car> cars = new List<Car>()
         {
             new Car { Make = "Toyota", Model = "Camry", Year = 2018, Color = "Red", Mileage = 25000, Price = 22000.00 },
@@ -264,33 +267,45 @@ namespace BackEnd
 
         public static void Main(string[] args)
         {
-            Service service = new Service();
-           // service.getAllClassesNames();
-           //service.getSelectedClassFields("Laptop");
+            entityService.FetchEntitiesByClassName("Laptop").ForEach(it => Console.WriteLine(it));
         }
-        
+
+
+
         private static void populateDb()
         {
             Console.Write("in populateDb");
 
+            DatabaseContext<Car> carContext = new DatabaseContext<Car>();
+            DatabaseContext<Phone> phoneContext = new DatabaseContext<Phone>();
+            DatabaseContext<Laptop> laptopContext = new DatabaseContext<Laptop>();
+            DatabaseContext<VideoGame> videoGameContext = new DatabaseContext<VideoGame>();
+
+
             foreach (var car in cars)
             {
-                DatabaseContext.SingletonDbContext.Cars.Add(car);
-            }
-            foreach (var laptop in laptops)
-            {
-                DatabaseContext.SingletonDbContext.Laptops.Add(laptop);
-            }
-            foreach (var phone in phones)
-            {
-                DatabaseContext.SingletonDbContext.Phones.Add(phone);
-            }
-            foreach (var videoGame in videoGames)
-            {
-                DatabaseContext.SingletonDbContext.VideoGames.Add(videoGame);
+                carContext.Entities.Add(car);
             }
 
-            DatabaseContext.SingletonDbContext.SaveChanges();
+            foreach (var laptop in laptops)
+            {
+                laptopContext.Entities.Add(laptop);
+            }
+
+            foreach (var phone in phones)
+            {
+                phoneContext.Entities.Add(phone);
+            }
+
+            foreach (var videoGame in videoGames)
+            {
+                videoGameContext.Entities.Add(videoGame);
+            }
+
+            carContext.SaveChanges();
+            laptopContext.SaveChanges();
+            videoGameContext.SaveChanges();
+            phoneContext.SaveChanges();
         }
     }
 }

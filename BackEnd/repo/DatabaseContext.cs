@@ -1,21 +1,21 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using BackEnd.Entity;
 using BackEnd.Properties;
 
 namespace BackEnd.db
 {
-    public class DatabaseContext : DbContext
+    public class DatabaseContext<T> : DbContext where T : Entity.Entity
     {
-        public DbSet<Car> Cars { get; set; }
-        public DbSet<Phone> Phones { get; set; }
-        public DbSet<VideoGame> VideoGames { get; set; }
-        public DbSet<Laptop> Laptops { get; set; }
+        
+        public DbSet<T> Entities { get; set; }
 
         public DatabaseContext()
             : base(Settings.Default.DbConnect)
         {
         }
 
-        public static DatabaseContext SingletonDbContext = new DatabaseContext();
     }
 }
