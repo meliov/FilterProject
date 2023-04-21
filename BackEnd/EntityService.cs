@@ -47,7 +47,10 @@ namespace BackEnd
             return getEntitClasses().FirstOrDefault(t => t.Name == entityName);
         }
 
-        public List<object> FetchEntitiesByClassNameAndFilterThem(String className, Dictionary<string, string> filters)
+        /**
+         * filters key is filtering value and key is property name
+         */
+        public List<object> FetchEntriesByClassNameAndFilterThem(String className, Dictionary<string, string> filters)
         {
             Console.WriteLine("in FetchEntitiesByClassNameAndFilterThem");
 
@@ -67,8 +70,8 @@ namespace BackEnd
                 // Filter entities based on property names and values
                 foreach (var filter in filters)
                 {
-                    string propertyName = filter.Key;
-                    string propertyValue = filter.Value;
+                    string propertyName = filter.Value;
+                    string propertyValue = filter.Key;
 
                     if (spotNumericFilter(propertyValue))
                     {

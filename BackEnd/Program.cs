@@ -290,13 +290,12 @@ namespace BackEnd
            // populateDb();
             Dictionary<string, string> filters = new Dictionary<string, string>
             {
-                { "Brand", "Lenovo" },
-                { "Price", ">1800" },
-                {"Processor", "Intel Core i7"},
-                {"Storage", ">=512"}
+                { "Lenovo", "Brand" },
+                { ">1800", "Price" },
+                {"Intel Core i7", "Processor"},
+                {">=512", "Storage"}
             };
-            entityService.FetchEntitiesByClassNameAndFilterThem("Laptop", filters ).ForEach(it => Console.WriteLine(it));
-            
+            entityService.FetchEntriesByClassNameAndFilterThem("Laptop", filters ).ForEach(it => Console.WriteLine(it));
         }
 
 
