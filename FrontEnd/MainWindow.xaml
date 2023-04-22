@@ -6,29 +6,62 @@
         xmlns:wpfToolKit="http://schemas.microsoft.com/wpf/2008/toolkit"
         xmlns:local="clr-namespace:FrontEnd"
         mc:Ignorable="d"
-        Title="GenericFilter" Height="950" Width="1300" MinHeight="950" MinWidth="1300" ResizeMode="CanResize">
-    <Grid Margin="0,0,0,8">
-        <ComboBox ItemsSource="{Binding EntityNames}"
+        Title="GenericFilter" Height="800" Width="1220" MinHeight="800" MinWidth="1220" ResizeMode="CanResize">
+    <Grid Margin="0,0,0,13">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Filtered Entities" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Top" Width="92" Grid.Row="1"/>
+            <DataGrid ItemsSource="{Binding FetchedEntries}" AutoGenerateColumns="True" Margin="65,23,10,24" Grid.Row="1"/>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label  Content="Entities" HorizontalAlignment="Center" Margin="0,46,0,0" VerticalAlignment="Top" Width="120" Grid.Column="0"/>
+                <ComboBox ItemsSource="{Binding EntityNames}"
                   SelectedItem="{Binding SelectedEntityName}"
-                  IsSynchronizedWithCurrentItem="True" Margin="57,100,1073,776" MinWidth="120" Width="120" MinHeight="20" Height="20"/>
-        <ComboBox ItemsSource="{Binding Properties}" 
+                  IsSynchronizedWithCurrentItem="True"
+                  HorizontalAlignment="Center"  
+                  VerticalAlignment="Top" Width="120" Margin="0,69,0,0" Grid.Column="0"/>
+                <Label Content="Properties" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Width="180" Grid.Column="1"/>
+                <ComboBox ItemsSource="{Binding Properties}" 
                   SelectedItem="{Binding SelectedProperty}"
-                  IsSynchronizedWithCurrentItem="True" Margin="277,100,779,776" MinWidth="194" Width="194" MinHeight="20" Height="20"/>
-        <ComboBox ItemsSource="{Binding Operators}"
+                  IsSynchronizedWithCurrentItem="True"
+                  HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Width="194" Height="22" Grid.Column="1"/>
+                <Label Content="Filter Action" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="72" Grid.Column="2" Margin="39,96,0,0"/>
+                <ComboBox ItemsSource="{Binding Operators}"
                   SelectedItem="{Binding SelectedOperator}"
-                  IsSynchronizedWithCurrentItem="True" Margin="605,125,557,751" MinHeight="20" Height="20" MinWidth="88" Width="88"/>
-        <TextBox  Text="{Binding FilterValue}" Margin="506,100,557,776" TextWrapping="Wrap" MinWidth="187" Width="187" MinHeight="20" Height="20"/>
-        <ListBox MinHeight="745" Height="745" MinWidth="240" Width="240" Margin="911,80,74,36" ItemsSource="{Binding PickedFilters}" SelectedItem="{Binding SelectedFilter}"/>
-        <DataGrid MinHeight="590" Height="590" MinWidth="860" Width="860" Margin="57,253,333,53" ItemsSource="{Binding FetchedEntries}" AutoGenerateColumns="True">
-        </DataGrid>
-        <Button Command="{Binding RemoveFilterCommand}" Content="Remove Filter" Margin="832,101,332,775" MinWidth="86" Width="86" MinHeight="20" Height="20"/>
-        <Button Command="{Binding ApplyFilterCommand}" Content="Apply Filters" Margin="723,125,333,751" MinWidth="194" Width="194" MinHeight="20" Height="20"/>
-        <Button Command="{Binding AddFilterCommand}" Content="Add Filter" Margin="723,100,441,776" MinWidth="86" Width="86" MinHeight="20" Height="20"/>
-        <Label Content="Entities" Margin="57,69,1073,802" MinWidth="120" Width="120" MinHeight="25" Height="25"/>
-        <Label Content="Properties" Margin="277,65,853,806" MinWidth="120" Width="120" MinHeight="25" Height="25"/>
-        <Label Content="Filter Action" Margin="506,123,672,748" MinHeight="25" Height="25" MinWidth="72" Width="72" RenderTransformOrigin="-0.486,-1.699"/>
-        <Label Content="Filter Value" Margin="542,65,639,806" MinHeight="25" Height="25" MinWidth="69" Width="69"/>
-        <Label Content="Added Filters" Margin="988,62,150,809" MinHeight="25" Height="25" MinWidth="112" Width="112"/>
-        <Label Content="Filtered Entities" Margin="396,197,760,674" MinHeight="25" Height="25" MinWidth="93" Width="93"/>
+                  IsSynchronizedWithCurrentItem="True"
+                  HorizontalAlignment="Left" Margin="139,98,0,0" VerticalAlignment="Top" Width="88" Grid.Column="2"/>
+                <Label Content="Filter Value" HorizontalAlignment="Left" Margin="39,40,0,0" VerticalAlignment="Top" Width="70" Grid.Column="2"/>
+                <Button Command="{Binding AddFilterCommand}" Content="Add Filter" HorizontalAlignment="Left" Margin="40,73,0,0" VerticalAlignment="Top" Width="86" Height="18" Grid.Column="3"/>
+                <Button Command="{Binding RemoveFilterCommand}" Content="Remove Filter" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="86" Height="21" Grid.Column="3" Margin="148,71,0,0"/>
+                <Button Command="{Binding ApplyFilterCommand}" Content="Apply Filters" HorizontalAlignment="Left" VerticalAlignment="Top" Width="194" Margin="40,99,0,0" Grid.Column="3" Height="23"/>
+                <TextBox  Text="{Binding FilterValue}"
+                  HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="188" Height="20" Grid.Column="2" Margin="39,71,0,0"/>
+            </Grid>
+        </Grid>
+
+
+        <Label Content="Added Filters" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Width="112" Grid.Column="1"/>
+        <ListBox ItemsSource="{Binding PickedFilters}" SelectedItem="{Binding SelectedFilter}" Margin="17,71,17,23" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+            <ListBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ListBox.RenderTransform>
+        </ListBox>
     </Grid>
 </Window>
