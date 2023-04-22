@@ -6,34 +6,29 @@
         xmlns:wpfToolKit="http://schemas.microsoft.com/wpf/2008/toolkit"
         xmlns:local="clr-namespace:FrontEnd"
         mc:Ignorable="d"
-        Title="GenericFilter" Height="920" Width="1250" ResizeMode="CanResize">
+        Title="GenericFilter" Height="950" Width="1300" MinHeight="950" MinWidth="1300" ResizeMode="CanResize">
     <Grid Margin="0,0,0,8">
         <ComboBox ItemsSource="{Binding EntityNames}"
                   SelectedItem="{Binding SelectedEntityName}"
-                  IsSynchronizedWithCurrentItem="True"
-                  HorizontalAlignment="Left" Margin="80,81,0,0" 
-                  VerticalAlignment="Top" MinWidth="120" Width="120" MinHeight="20" Height="20"/>
+                  IsSynchronizedWithCurrentItem="True" Margin="57,100,1073,776" MinWidth="120" Width="120" MinHeight="20" Height="20"/>
         <ComboBox ItemsSource="{Binding Properties}" 
                   SelectedItem="{Binding SelectedProperty}"
-                  IsSynchronizedWithCurrentItem="True"
-                  HorizontalAlignment="Left" Margin="253,80,0,0" VerticalAlignment="Top" MinWidth="194" Width="194" MinHeight="20" Height="20"/>
+                  IsSynchronizedWithCurrentItem="True" Margin="277,100,779,776" MinWidth="194" Width="194" MinHeight="20" Height="20"/>
         <ComboBox ItemsSource="{Binding Operators}"
                   SelectedItem="{Binding SelectedOperator}"
-                  IsSynchronizedWithCurrentItem="True"
-                  HorizontalAlignment="Left" Margin="584,115,0,0" VerticalAlignment="Top" MinHeight="20" Height="20" MinWidth="88" Width="88"/>
-        <TextBox  Text="{Binding FilterValue}"
-                  HorizontalAlignment="Left" Margin="485,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="187" Width="187" MinHeight="20" Height="20"/>
+                  IsSynchronizedWithCurrentItem="True" Margin="605,125,557,751" MinHeight="20" Height="20" MinWidth="88" Width="88"/>
+        <TextBox  Text="{Binding FilterValue}" Margin="506,100,557,776" TextWrapping="Wrap" MinWidth="187" Width="187" MinHeight="20" Height="20"/>
         <ListBox MinHeight="745" Height="745" MinWidth="240" Width="240" Margin="911,80,74,36" ItemsSource="{Binding PickedFilters}" SelectedItem="{Binding SelectedFilter}"/>
-        <DataGrid MinHeight="590" Height="590" MinWidth="860" Width="860" Margin="32,212,333,64" ItemsSource="{Binding FetchedEntries}" AutoGenerateColumns="True">
+        <DataGrid MinHeight="590" Height="590" MinWidth="860" Width="860" Margin="57,253,333,53" ItemsSource="{Binding FetchedEntries}" AutoGenerateColumns="True">
         </DataGrid>
-        <Button Command="{Binding RemoveFilterCommand}" Content="Remove Filter" HorizontalAlignment="Left" Margin="806,80,0,0" VerticalAlignment="Top" MinWidth="86" Width="86" MinHeight="20" Height="20"/>
-        <Button Command="{Binding ApplyFilterCommand}" Content="Apply Filters" HorizontalAlignment="Left" Margin="698,118,0,0" VerticalAlignment="Top" MinWidth="194" Width="194" MinHeight="20" Height="20"/>
-        <Button Command="{Binding AddFilterCommand}" Content="Add Filter" HorizontalAlignment="Left" Margin="698,81,0,0" VerticalAlignment="Top" MinWidth="86" Width="86" MinHeight="20" Height="20"/>
-        <Label Content="Entities" HorizontalAlignment="Left" Margin="80,49,0,0" VerticalAlignment="Top" MinWidth="120" Width="120" MinHeight="25" Height="25"/>
-        <Label Content="Properties" HorizontalAlignment="Left" Margin="253,44,0,0" VerticalAlignment="Top" MinWidth="180" Width="180"/>
-        <Label Content="Filter Action" HorizontalAlignment="Left" Margin="485,115,0,0" VerticalAlignment="Top" MinHeight="25" Height="25" MinWidth="72" Width="72"/>
-        <Label Content="Filter Value" HorizontalAlignment="Left" Margin="488,44,0,0" VerticalAlignment="Top" MinHeight="25" Height="25" MinWidth="69" Width="69"/>
-        <Label Content="Added Filters" HorizontalAlignment="Left" Margin="960,56,0,0" VerticalAlignment="Top" MinHeight="25" Height="25" MinWidth="112" Width="112"/>
-        <Label Content="Filtered Entities" HorizontalAlignment="Left" Margin="253,179,0,0" VerticalAlignment="Top" MinHeight="25" Height="25" MinWidth="93" Width="93"/>
+        <Button Command="{Binding RemoveFilterCommand}" Content="Remove Filter" Margin="832,101,332,775" MinWidth="86" Width="86" MinHeight="20" Height="20"/>
+        <Button Command="{Binding ApplyFilterCommand}" Content="Apply Filters" Margin="723,125,333,751" MinWidth="194" Width="194" MinHeight="20" Height="20"/>
+        <Button Command="{Binding AddFilterCommand}" Content="Add Filter" Margin="723,100,441,776" MinWidth="86" Width="86" MinHeight="20" Height="20"/>
+        <Label Content="Entities" Margin="57,69,1073,802" MinWidth="120" Width="120" MinHeight="25" Height="25"/>
+        <Label Content="Properties" Margin="277,65,853,806" MinWidth="120" Width="120" MinHeight="25" Height="25"/>
+        <Label Content="Filter Action" Margin="506,123,672,748" MinHeight="25" Height="25" MinWidth="72" Width="72" RenderTransformOrigin="-0.486,-1.699"/>
+        <Label Content="Filter Value" Margin="542,65,639,806" MinHeight="25" Height="25" MinWidth="69" Width="69"/>
+        <Label Content="Added Filters" Margin="988,62,150,809" MinHeight="25" Height="25" MinWidth="112" Width="112"/>
+        <Label Content="Filtered Entities" Margin="396,197,760,674" MinHeight="25" Height="25" MinWidth="93" Width="93"/>
     </Grid>
 </Window>
