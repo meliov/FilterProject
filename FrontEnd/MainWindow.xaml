@@ -6,38 +6,34 @@
         xmlns:wpfToolKit="http://schemas.microsoft.com/wpf/2008/toolkit"
         xmlns:local="clr-namespace:FrontEnd"
         mc:Ignorable="d"
-        Title="GenericFilter" Height="861" Width="1212">
+        Title="GenericFilter" Height="890" Width="1220" ResizeMode="CanResize">
     <Grid Margin="0,0,0,13">
         <ComboBox ItemsSource="{Binding EntityNames}"
                   SelectedItem="{Binding SelectedEntityName}"
                   IsSynchronizedWithCurrentItem="True"
                   HorizontalAlignment="Left" Margin="80,81,0,0" 
-                  VerticalAlignment="Top" Width="120"/>
+                  VerticalAlignment="Top" Width="120" Height="20"/>
         <ComboBox ItemsSource="{Binding Properties}" 
                   SelectedItem="{Binding SelectedProperty}"
                   IsSynchronizedWithCurrentItem="True"
-                  HorizontalAlignment="Left" Margin="253,80,0,0" VerticalAlignment="Top" Width="194" Height="22"/>
+                  HorizontalAlignment="Left" Margin="253,80,0,0" VerticalAlignment="Top" Width="194" Height="20"/>
         <ComboBox ItemsSource="{Binding Operators}"
                   SelectedItem="{Binding SelectedOperator}"
                   IsSynchronizedWithCurrentItem="True"
-                  HorizontalAlignment="Left" Margin="584,115,0,0" VerticalAlignment="Top" Width="88"/>
+                  HorizontalAlignment="Left" Margin="584,115,0,0" VerticalAlignment="Top" Height="20" Width="88"/>
         <TextBox  Text="{Binding FilterValue}"
                   HorizontalAlignment="Left" Margin="485,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Height="20"/>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="897,80,60,10">
-            <ListBox ItemsSource="{Binding PickedFilters}" SelectedItem="{Binding SelectedFilter}"/>
-        </ScrollViewer>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,229,320,10">
-            <DataGrid ItemsSource="{Binding FetchedEntries}" AutoGenerateColumns="True">
-            </DataGrid>
-        </ScrollViewer>
-        <Button Command="{Binding RemoveFilterCommand}" Content="Remove Filter" HorizontalAlignment="Left" Margin="806,80,0,0" VerticalAlignment="Top" Width="86" Height="21"/>
-        <Button Command="{Binding ApplyFilterCommand}" Content="Apply Filters" HorizontalAlignment="Left" Margin="698,118,0,0" VerticalAlignment="Top" Width="194" Height="19"/>
-        <Button Command="{Binding AddFilterCommand}" Content="Add Filter" HorizontalAlignment="Left" Margin="698,81,0,0" VerticalAlignment="Top" Width="86" Height="19"/>
-        <Label Content="Entities" HorizontalAlignment="Left" Margin="80,49,0,0" VerticalAlignment="Top" Width="120"/>
+        <ListBox Height="745" Width="240" Margin="897,80,60,10" ItemsSource="{Binding PickedFilters}" SelectedItem="{Binding SelectedFilter}"/>
+        <DataGrid Height="590" Width="860" Margin="32,248,328,23" ItemsSource="{Binding FetchedEntries}" AutoGenerateColumns="True">
+        </DataGrid>
+        <Button Command="{Binding RemoveFilterCommand}" Content="Remove Filter" HorizontalAlignment="Left" Margin="806,80,0,0" VerticalAlignment="Top" Width="86" Height="20"/>
+        <Button Command="{Binding ApplyFilterCommand}" Content="Apply Filters" HorizontalAlignment="Left" Margin="698,118,0,0" VerticalAlignment="Top" Width="194" Height="20"/>
+        <Button Command="{Binding AddFilterCommand}" Content="Add Filter" HorizontalAlignment="Left" Margin="698,81,0,0" VerticalAlignment="Top" Width="86" Height="20"/>
+        <Label Content="Entities" HorizontalAlignment="Left" Margin="80,49,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
         <Label Content="Properties" HorizontalAlignment="Left" Margin="253,44,0,0" VerticalAlignment="Top" Width="180"/>
-        <Label Content="Filter Action" HorizontalAlignment="Left" Margin="485,115,0,0" VerticalAlignment="Top" Width="72"/>
-        <Label Content="Filter Value" HorizontalAlignment="Left" Margin="488,44,0,0" VerticalAlignment="Top" Width="69"/>
-        <Label Content="Added Filters" HorizontalAlignment="Left" Margin="897,49,0,0" VerticalAlignment="Top" Width="112"/>
-        <Label Content="Filtered Entities" HorizontalAlignment="Left" Margin="253,179,0,0" VerticalAlignment="Top" Width="93"/>
+        <Label Content="Filter Action" HorizontalAlignment="Left" Margin="485,115,0,0" VerticalAlignment="Top" Height="25" Width="72"/>
+        <Label Content="Filter Value" HorizontalAlignment="Left" Margin="488,44,0,0" VerticalAlignment="Top" Height="25" Width="69"/>
+        <Label Content="Added Filters" HorizontalAlignment="Left" Margin="960,56,0,0" VerticalAlignment="Top" Height="25" Width="112"/>
+        <Label Content="Filtered Entities" HorizontalAlignment="Left" Margin="253,179,0,0" VerticalAlignment="Top" Height="25" Width="93"/>
     </Grid>
 </Window>
