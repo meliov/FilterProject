@@ -14,12 +14,13 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
                 <RowDefinition Height="5*" />
             </Grid.RowDefinitions>
             <Label Content="Filtered Entities" HorizontalAlignment="Center" VerticalAlignment="Center" Width="92"
                    Grid.Row="2" />
-            <DataGrid ItemsSource="{Binding FetchedEntries}" AutoGenerateColumns="True" Grid.Row="3" />
+            <GroupBox Header="Filtered Entities" Grid.Row="2">
+                <DataGrid ItemsSource="{Binding FetchedEntries}" AutoGenerateColumns="True" Grid.Row="2" />
+            </GroupBox>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
@@ -112,20 +113,20 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="7*" />
             </Grid.RowDefinitions>
-            <Label Content="Added Filters" HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                   Width="112" Height="26" Grid.Row="0" />
             <Grid Grid.Row="1">
-                <ListBox ItemsSource="{Binding PickedFilters}" SelectedItem="{Binding SelectedFilter}"
-                         RenderTransformOrigin="0.5,0.5">
-                    <ListBox.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="-1" />
-                            <SkewTransform />
-                            <RotateTransform />
-                            <TranslateTransform />
-                        </TransformGroup>
-                    </ListBox.RenderTransform>
-                </ListBox>
+                <GroupBox Header="Added Filters">
+                    <ListBox ItemsSource="{Binding PickedFilters}" SelectedItem="{Binding SelectedFilter}"
+                             RenderTransformOrigin="0.5,0.5">
+                        <ListBox.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1" />
+                                <SkewTransform />
+                                <RotateTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </ListBox.RenderTransform>
+                    </ListBox>
+                </GroupBox>
             </Grid>
         </Grid>
     </Grid>
