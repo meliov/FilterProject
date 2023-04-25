@@ -18,7 +18,7 @@ namespace BackEnd
             Console.WriteLine("in getEntitClasses");
 
             return (from t in Assembly.GetExecutingAssembly().GetTypes()
-                where t.IsClass && t.Namespace == "BackEnd.Entity" && t.IsSubclassOf(typeof(Entity.Entity))
+                where t.IsClass && t.IsSubclassOf(typeof(Entity.Entity))
                 select t).ToList();
         }
 
@@ -28,14 +28,14 @@ namespace BackEnd
             return getEntitClasses().Select(it => it.Name).ToList();
         }
 
-        public Dictionary<String, Type> getSelectedClassFields(String className)
+        public List<PropertyObject> getSelectedClassFields(String className)
         {
             Console.WriteLine("in GetSelectedClassFields");
             Type entityType = getEntitClasses().FirstOrDefault(it => it.Name.Equals(className));
             if (entityType != null)
             {
                 PropertyInfo[] properties = entityType.GetProperties();
-                return properties.ToDictionary(prop => prop.Name, prop => prop.PropertyType);
+                return properties.Select(prop =>new PropertyObject( prop.Name,  prop.PropertyType) ).ToList();
             }
 
             return null;
@@ -50,13 +50,13 @@ namespace BackEnd
         /**
          * filters key is filtering value and key is property name
          */
-        public List<object> FetchEntriesByClassNameAndFilterThem(String className, Dictionary<string, string> filters)
+        public List<object> FetchEntriesByClassNameAndFilterThem(FilterObject filterObject)
         {
             Console.WriteLine("in FetchEntitiesByClassNameAndFilterThem");
 
-            Type entityTypeByName = getEntityTypeByName(className);
+            Type entityTypeByName = getEntityTypeByName(filterObject.ClassName);
 
-            List<object> dbEntities = null;
+            List<object> dbEntities = new List<object>();
 
             if (entityTypeByName.IsSubclassOf(typeof(Entity.Entity)))
             {
@@ -65,40 +65,63 @@ namespace BackEnd
                 dynamic entities = dbContext.Entities;
                 IEnumerable entitiesEnumerable = entities;
 
-                dbEntities = entitiesEnumerable.Cast<object>().ToList();
-
-                // Filter entities based on property names and values
-                foreach (var filter in filters)
-                {
-                    string propertyName = filter.Value;
-                    string propertyValue = filter.Key;
-
-                    if (spotNumericFilter(propertyValue))
-                    {
-                        string symbol = ExtractSpecialChars(propertyValue);
-                        string stringNumber = propertyValue.Replace(symbol, "");
-                        dynamic value = null;
-                        if (entityTypeByName.GetProperty(propertyName).PropertyType == typeof(double))
-                        {
-                            value = double.Parse(stringNumber);
-                        }
-                        else
-                        {
-                            value = int.Parse(stringNumber);
-                        }
-
-                        dbEntities = dbEntities.Where(entity =>
-                            numericFilter(entity, entityTypeByName, propertyName, value, symbol)).ToList();
-                    }
-                    else
-                    {
-                        dbEntities = dbEntities.Where(entity =>
-                            characterFilter(entity, entityTypeByName, propertyName, propertyValue)).ToList();
-                    }
-                }
+                List<Func<object, bool>> filterFunctions = fetchFilterFunctions(filterObject, entityTypeByName);
+                
+                dbEntities = new List<object>(entitiesEnumerable.Cast<object>().Where(entity =>
+                    filterFunctions.All(filterFunction => applyFilterFunctions(entity, filterFunctions))).ToList());
             }
 
-            return dbEntities;
+            return dbEntities.ToList();
+        }
+
+        private List<Func<object, bool>> fetchFilterFunctions(FilterObject filterObject, Type entityTypeByName)
+        {
+            List<Func<object, bool>> filterFunctions = new List<Func<object, bool>>();
+            foreach (var filter in filterObject.Filters)
+            {
+                string propertyName = filter.Value;
+                string propertyValue = filter.Key;
+                filterFunctions.Add(entity => decideFunction(entity, entityTypeByName, propertyName, propertyValue));
+            }
+
+            return filterFunctions;
+        }
+
+        private Boolean applyFilterFunctions(Object entity,List<Func<object, bool>> filterFunctions )
+        {
+            foreach (var filterFunction in filterFunctions)
+            {
+                if (!filterFunction(entity))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool decideFunction(object entity, Type entityTypeByName, string propertyName, string propertyValue)
+        {
+            if (spotNumericFilter(propertyValue))
+            {
+                string symbol = ExtractSpecialChars(propertyValue);
+                string stringNumber = propertyValue.Replace(symbol, "");
+                dynamic value = null;
+                if (entityTypeByName.GetProperty(propertyName).PropertyType == typeof(double))
+                {
+                    value = double.Parse(stringNumber);
+                }
+                else
+                {
+                    value = int.Parse(stringNumber);
+                }
+                
+                  return  numericFilter(entity, entityTypeByName, propertyName, value, symbol);
+            }
+            else
+            {
+               
+                   return characterFilter(entity, entityTypeByName, propertyName, propertyValue);
+                        
+            }
         }
 
         private bool numericFilter(object entity, Type entityTypeByName, String propertyName, dynamic value,

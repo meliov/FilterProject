@@ -295,7 +295,7 @@ namespace BackEnd
                 {"Intel Core i7", "Processor"},
                 {">=512", "Storage"}
             };
-            entityService.FetchEntriesByClassNameAndFilterThem("Laptop", filters ).ForEach(it => Console.WriteLine(it));
+            entityService.FetchEntriesByClassNameAndFilterThem(new FilterObject("Laptop", filters) ).ForEach(it => Console.WriteLine(it));
         }
 
 
@@ -303,7 +303,7 @@ namespace BackEnd
         {
             foreach (var selectedClassField in entityService.getSelectedClassFields("Laptop"))
             {
-                Console.WriteLine(selectedClassField.Key + " - " + selectedClassField.Value);
+                Console.WriteLine(selectedClassField.PropName + " - " + selectedClassField.PropType);
             }
         }
         private static void populateDb()

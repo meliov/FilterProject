@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\Entity.cs" />
+    <Compile Include="FilterObject.cs" />
+    <Compile Include="PropertyObject.cs" />
     <Compile Include="repo\CarsRepository.cs" />
     <Compile Include="repo\DatabaseContext.cs" />
     <Compile Include="Entity\Car.cs" />

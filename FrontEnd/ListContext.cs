@@ -15,7 +15,6 @@ namespace FrontEnd
     public class ListContext : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private static EntityService entityService = new EntityService();
         private ObservableCollection<String> _entityNames;
         private ObservableCollection<String> _properties;
         private ObservableCollection<String> _operators;
@@ -29,8 +28,6 @@ namespace FrontEnd
         private ObservableCollection<Object> _fetchedEntries;
 
         private String _filterValue;
-
-        private string MAIN_FILTER_SEPARATOR = "___";
         
         public string SelectedFilter
         {
@@ -53,7 +50,7 @@ namespace FrontEnd
             else
             {
                 // MessageBox.Show("Hello " + SelectedEntityName + " "+ SelectedProperty+" " + SelectedOperator + FilterValue  + "!");
-                String itemToAdd = SelectedEntityName + MAIN_FILTER_SEPARATOR + SelectedProperty + MAIN_FILTER_SEPARATOR + SelectedOperator+MAIN_FILTER_SEPARATOR + FilterValue;
+                String itemToAdd = SelectedEntityName + Utils.MAIN_FILTER_SEPARATOR + SelectedProperty + Utils.MAIN_FILTER_SEPARATOR + SelectedOperator+Utils.MAIN_FILTER_SEPARATOR + FilterValue;
                 if (!PickedFilters.Contains(itemToAdd))
                 {
                     PickedFilters.Add(itemToAdd);
@@ -77,35 +74,11 @@ namespace FrontEnd
 
         public new ICommand ApplyFilterCommand => new DelegateCommand(() =>
         {
-            populateTableWithEntries();
+           FetchedEntries = Utils.populateTableWithEntries(SelectedEntityName, PickedFilters);
         });
 
 
-        private void populateTableWithEntries()
-        {
-            Dictionary<string, string> filters = new Dictionary<string, string>();
-            foreach (var pickedFilter in PickedFilters)
-            {
-                string filterValueToAdd = "";
-                var elementsSeparator = MAIN_FILTER_SEPARATOR;
-                var choppedFilter = pickedFilter.Split(new string[]{elementsSeparator},StringSplitOptions.None);
-                //0 SelectedEntityName + MAIN_FILTER_SEPARATOR + 1 SelectedProperty + MAIN_FILTER_SEPARATOR +2 SelectedOperator+ MAIN_FILTER_SEPARATOR + 3 FilterValue;
-                string filterPropertyToAdd = choppedFilter[1];
-                string filterOperator = choppedFilter[2];
-                if (filterOperator.Equals("is"))
-                {
-                    filterValueToAdd = choppedFilter[3];
-                }
-                else
-                {
-                    filterValueToAdd = choppedFilter[2] + choppedFilter[3];
-                }
-                filters.Add(filterValueToAdd,filterPropertyToAdd);
-            }
-
-            FetchedEntries = new ObservableCollection<Object>(entityService
-                .FetchEntriesByClassNameAndFilterThem(SelectedEntityName, filters));
-        }
+       
         
         public ObservableCollection<String> PickedFilters
         {
@@ -178,10 +151,9 @@ namespace FrontEnd
                 _selectedEntityName = value;
                 PropChanged("SelectedEntityName");
                 Properties =
-                    new ObservableCollection<string>(entityService.getSelectedClassFields(value).Select(it => it.Key)
-                        .ToList());
+                    Utils.getSelectedClassFields(value);
                 PickedFilters.Clear();
-                populateTableWithEntries();
+                FetchedEntries = Utils.populateTableWithEntries(SelectedEntityName, PickedFilters);
                 SelectedOperator = null;
                 FilterValue = null; ;
             }
@@ -219,7 +191,7 @@ namespace FrontEnd
 
         public ListContext()
         {
-            EntityNames = new ObservableCollection<string>(entityService.getAllClassesNames());
+            EntityNames = Utils.getAllClassesNames();
             Properties =
                 new ObservableCollection<string>(new List<string> { "" });
             Operators = new ObservableCollection<string>(new List<string> { "==", ">", "<", ">=", "<=" });
