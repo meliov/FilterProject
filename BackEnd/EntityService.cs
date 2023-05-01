@@ -13,9 +13,9 @@ namespace BackEnd
     {
         private static string MATH_SYMBOLS = "[><=]";
 
-        private List<Type> getEntitClasses()
+        private List<Type> getEntityClasses()
         {
-            Console.WriteLine("in getEntitClasses");
+            Console.WriteLine("in getEntityClasses");
 
             return (from t in Assembly.GetExecutingAssembly().GetTypes()
                 where t.IsClass && t.IsSubclassOf(typeof(Entity.Entity))
@@ -25,13 +25,13 @@ namespace BackEnd
         public List<String> getAllClassesNames()
         {
             Console.WriteLine("in getAllClassesNames");
-            return getEntitClasses().Select(it => it.Name).ToList();
+            return getEntityClasses().Select(it => it.Name).ToList();
         }
 
         public List<PropertyObject> getSelectedClassFields(String className)
         {
             Console.WriteLine("in GetSelectedClassFields");
-            Type entityType = getEntitClasses().FirstOrDefault(it => it.Name.Equals(className));
+            Type entityType = getEntityClasses().FirstOrDefault(it => it.Name.Equals(className));
             if (entityType != null)
             {
                 PropertyInfo[] properties = entityType.GetProperties();
@@ -44,7 +44,7 @@ namespace BackEnd
         public Type getEntityTypeByName(String entityName)
         {
             Console.WriteLine("in getEntityTypeByName");
-            return getEntitClasses().FirstOrDefault(t => t.Name == entityName);
+            return getEntityClasses().FirstOrDefault(t => t.Name == entityName);
         }
 
         /**
