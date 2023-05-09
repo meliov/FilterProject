@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BackEnd.Entity.VideoGame" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAIAEAECAIAAAAAAAAAAAEACAAAAAAAAAA=</HashCode>
+      <FileName>Entity\Videogame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BackEnd.Entity.Phone" Collapsed="true">
+    <Position X="2.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAQAIAAAEAAAAAAAAAAAAEAAAAAgAAAABAgA=</HashCode>
+      <FileName>Entity\Phone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BackEnd.Entity.Laptop" Collapsed="true">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAQAIAAAEAAAAAAAAAAAAAAAAAAgAAAAFAgA=</HashCode>
+      <FileName>Entity\Laptop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BackEnd.Entity.Entity" Collapsed="true">
+    <Position X="3.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BackEnd.Entity.Car" Collapsed="true">
+    <Position X="5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAABQAAAAAEAAAAAAAAAAAAAAAAAAgAgAIAAAA=</HashCode>
+      <FileName>Entity\Car.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BackEnd.EntityService" Collapsed="true">
+    <Position X="9.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAICAAAAAQEABAAAAgAAAgAAApAAYAAAAAAAAAAAAA=</HashCode>
+      <FileName>EntityService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

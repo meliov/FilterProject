@@ -40,13 +40,7 @@ namespace BackEnd
 
             return null;
         }
-
-        public Type getEntityTypeByName(String entityName)
-        {
-            Console.WriteLine("in getEntityTypeByName");
-            return getEntityClasses().FirstOrDefault(t => t.Name == entityName);
-        }
-
+        
         /**
          * filters key is filtering value and key is property name
          */
@@ -73,6 +67,13 @@ namespace BackEnd
 
             return dbEntities.ToList();
         }
+
+        private Type getEntityTypeByName(String entityName)
+        {
+            Console.WriteLine("in getEntityTypeByName");
+            return getEntityClasses().FirstOrDefault(t => t.Name == entityName);
+        }
+        
 
         private List<Func<object, bool>> fetchFilterFunctions(FilterObject filterObject, Type entityTypeByName)
         {
