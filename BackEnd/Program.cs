@@ -287,7 +287,13 @@ namespace BackEnd
 
         public static void Main(string[] args)
         {
-           // populateDb();
+           populateDb();
+           // testFilter();
+        }
+
+
+        private static void  testFilter()
+        {
             Dictionary<string, string> filters = new Dictionary<string, string>
             {
                 { "Lenovo", "Brand" },
@@ -297,18 +303,9 @@ namespace BackEnd
             };
             entityService.FetchEntriesByClassNameAndFilterThem(new FilterObject("Laptop", filters) ).ForEach(it => Console.WriteLine(it));
         }
-
-
-        private static void  mapTest()
-        {
-            foreach (var selectedClassField in entityService.getSelectedClassFields("Laptop"))
-            {
-                Console.WriteLine(selectedClassField.PropName + " - " + selectedClassField.PropType);
-            }
-        }
         private static void populateDb()
         {
-            Console.Write("in populateDb");
+            Console.Write("in populateDb, Please wait...");
 
             DatabaseContext<Car> carContext = new DatabaseContext<Car>();
             DatabaseContext<Phone> phoneContext = new DatabaseContext<Phone>();

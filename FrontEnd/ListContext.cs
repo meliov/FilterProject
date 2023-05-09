@@ -106,17 +106,20 @@ namespace FrontEnd
             get => _filterValue;
             set
             {
-                _filterValue = value;
-                PropChanged("FilterValue");
-                if (Regex.IsMatch(value, "[a-zA-Z]+"))
+                if (value != null)
                 {
-                    Operators = new ObservableCollection<string>(new List<string> { "is" });
+                    _filterValue = value;
+                    PropChanged("FilterValue");
+                    if (Regex.IsMatch(value, "[a-zA-Z]+"))
+                    {
+                        Operators = new ObservableCollection<string>(new List<string> { "is" });
+                    }
+                    else
+                    {
+                        Operators = new ObservableCollection<string>(new List<string> { "==", ">", "<", ">=", "<=" });
+                    }
+                    SelectedOperator = null;
                 }
-                else
-                {
-                    Operators = new ObservableCollection<string>(new List<string> { "==", ">", "<", ">=", "<=" });
-                }
-                SelectedOperator = null;
             }
         }
 
